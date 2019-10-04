@@ -1,0 +1,75 @@
+import * as React from "react";
+
+class CreatingStudent extends React.Component {
+    render() {
+        function isEmpty(str) {
+            return (str);
+        }
+
+        const style = {
+            display: 'block'
+        };
+        return (
+            <div>
+                <h3>Создание студента</h3>
+                <div>
+                    <label style={style}>
+                        Фамилия
+                        <input type="text" name="surname" value={this.props.model.surname}
+                               onChange={this.props.handleChange}/>
+                    </label>
+                    <label style={style}>
+                        Имя
+                        <input type="text" name="firstName" value={this.props.model.firstName}
+                               onChange={this.props.handleChange}/>
+                    </label>
+                    <label style={style}>
+                        Отчество
+                        <input type="text" name="lastName" value={this.props.model.lastName}
+                               onChange={this.props.handleChange}/>
+                    </label>
+                    <label style={style}>
+                        ИИН
+                        <input type="text" name="iin" value={this.props.model.iin} onChange={this.props.handleChange}/>
+                    </label>
+                    <label style={style}>
+                        ВУЗ
+                        <select name="university" value={this.props.model.university}
+                                onChange={this.props.handleChange}>
+                            <option value={null}>Выберите ВУЗ</option>
+                            {this.props.universities.universities.map((value, index) =>
+                                <option key={value.id} value={value.id}>{value.title}</option>
+                            )}
+                        </select>
+                    </label>
+                    <label style={style}>
+                        Специальность
+                        <select name="specialty" value={this.props.model.specialty} onChange={this.props.handleChange}>
+                            <option value={null}>Выберите специальность</option>
+                            {this.props.specialties.specialties.map((value, index) =>
+                                <option key={value.id} value={value.id}>{value.title}</option>
+                            )}
+                        </select>
+                    </label>
+                    <label style={style}>
+                        Язык
+                        <input type="text" name="languageStudy" value={this.props.model.languageStudy}
+                               onChange={this.props.handleChange}/>
+                    </label>
+                    <button onClick={() => {
+                        if (isEmpty(this.props.model.surname) && isEmpty(this.props.model.firstName) && isEmpty(this.props.model.lastName)
+                            && isEmpty(this.props.model.iin) && isEmpty(this.props.model.university) && isEmpty(this.props.model.specialty)
+                            && isEmpty(this.props.model.languageStudy))
+                            this.props.createStudent();
+                        else alert("Заполните все поля")
+
+                    }}>
+                        Создать
+                    </button>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default CreatingStudent;
